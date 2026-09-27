@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for post in page_obj %}
+<div class="card">
+  <a href="{% url 'post' post.slug %}">
+    <h2>{{ post.title }}</h2>
+    <p class="meta">{{ post.created_at }}</p>
+    <p>{{ post.body|truncatewords:20 }}</p>
+  </a>
+</div>
+{% empty %}
+<p class="empty">No posts yet.</p>
+{% endfor %}
+
+{% if page_obj.paginator.num_pages > 1 %}
+<div class="pagination">
+  {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+  {% endif %}
+  <span class="current">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+  {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">Next</a>
+  {% endif %}
+</div>
+{% endif %}
+
+{% endblock %}

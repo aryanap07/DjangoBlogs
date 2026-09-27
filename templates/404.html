@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Page not found - My Blog{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h2>Page not found</h2>
+  <p>The post you're looking for doesn't exist.</p>
+  <a class="back-link" href="{% url 'index' %}">&larr; Back to all posts</a>
+</div>
+{% endblock %}
